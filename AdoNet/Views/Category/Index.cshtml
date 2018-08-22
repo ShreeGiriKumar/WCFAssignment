@@ -1,0 +1,85 @@
+﻿@model AdoNet.Models.CategoryDisplay
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>Category Info</h1>
+</div>
+
+@using (Html.BeginForm("Index", "Category", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.SearchBy, new { @class = "control-label col-md-2", @for = "SearchKey" })
+        <div class="col-md-3">
+            @Html.DropDownListFor(m => m.SearchBy, new SelectList(Model.SearchByOptions, "Value", "Text"), "Select Option", new { @class = "form-control dropdown" })
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.SearchKey, new { @class = "form-control", @placeholder = "Search Text" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search Category" class="form-control btn btn-primary" />
+        </div>
+    </div>
+}
+
+<br/>
+<br />
+<br />
+
+@if (Model.Categories != null)
+{
+<div class="row">
+    <div class="col-md-9 col-md-offset-1">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Category Code
+                    </th>
+                    <th>
+                        Category Name
+                    </th>
+                    <th>
+                        Division
+                    </th>
+                    <th>
+                        Region
+                    </th>
+                    <th>
+                        Supplier ID
+                    </th>
+                    <th>
+                        Supplier Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(@category.CategoryCode.ToString(), "Edit", "Category", new { categoryCode = @category.CategoryCode }, new { @class = "btn-info" })                            
+                        </td>
+                        <td>
+                            @category.CategoryName
+                        </td>
+                        <td>
+                            @category.Division
+                        </td>
+                        <td>
+                            @category.Region
+                        </td>
+                        <td>
+                            @category.SupplierId
+                        </td>
+                        <td>
+                            @category.SupplierName
+                        </td>                     
+                    </tr>
+                }
+            </tbody>            
+        </table>
+    </div>
+</div>
+}

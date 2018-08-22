@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Calculator";
+}
+
+<div class="jumbotron">
+    <h1>Calculator</h1>
+</div>
+
+@using (Html.BeginForm("Calculator", "GreetingService", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.Label("Number 1", new { @class = "control-label col-md-2", @for = "role", @id = "lblnum1" })
+        <div class="col-md-3">
+            @Html.TextBox("num1", "", new { @class = "form-control", @placeholder = "Number1", @id = "num1" })
+        </div>
+        @Html.Label("Number 2", new { @class = "control-label col-md-2", @for = "role", @id = "lblnum2" })
+        <div class="col-md-3">
+            @Html.TextBox("num2", "", new { @class = "form-control", @placeholder = "Number1", @id = "num2" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Calculate" class="form-control btn btn-primary" />
+        </div>
+    </div>
+}
+<br />
+<br />
+<br />
+
+
+<h2><span class="label label-success">"Add:"@ViewBag.Add </span></h2><br />
+<h2><span class="label label-info">"Sub:" @ViewBag.Sub</span></h2><br />
+<h2><span class="label label-warning">"Mul:" @ViewBag.Mul</span></h2><br />
+<h2><span class="label label-danger">"Div:" @ViewBag.Div</span></h2>
+
+

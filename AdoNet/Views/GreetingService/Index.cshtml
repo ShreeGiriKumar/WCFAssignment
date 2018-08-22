@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AdoNet.Models.JobOpening>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>Job Openings</h1>
+</div>
+
+@using (Html.BeginForm("Index", "GreetingService", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.Label("Job Role", new { @class = "control-label col-md-2", @for = "role", @id = "lblrole" })
+        <div class="col-md-3">
+            @Html.TextBox("role", "", new { @class = "form-control", @placeholder = "Enter a Role", @id = "role" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search Jobs" class="form-control btn btn-primary" />
+        </div>
+    </div>
+}
+<br />
+<br />
+<br />
+
+<span class="label label-success">@ViewBag.Result</span>
+
+<div class="row">
+    <div class="col-md-10">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Job Code
+                    </th>
+                    <th>
+                        Job Description
+                    </th>
+                    <th>
+                        Job Role
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var job in Model)
+                    {
+                        <tr>
+                            <td>
+                                @job.JobCode
+                            </td>
+                            <td>
+                                @job.JobDescription
+                            </td>
+                            <td>
+                                @job.JobRole
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

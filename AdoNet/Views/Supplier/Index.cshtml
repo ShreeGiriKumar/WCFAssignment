@@ -1,0 +1,77 @@
+﻿@model IEnumerable<AdoNet.Models.SupplierInfo>
+
+@{
+    ViewBag.Title = "Supplier Info Page";
+}
+
+<div class="jumbotron">
+    <h1>Supplier Info Details</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Supplier ID
+                    </th>
+                    <th>
+                        Supplier Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        Contact No
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Operation
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var supplier in Model)
+                {
+                    <tr>
+                        <td>
+                            @supplier.SupplierId
+                        </td>
+                        <td>
+                            @supplier.SupplierName
+                        </td>
+                        <td>
+                            @supplier.Address
+                        </td>
+                        <td>
+                            @supplier.City
+                        </td>
+                        <td>
+                            @supplier.ContactNo
+                        </td>
+                        <td>
+                            @supplier.Email
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Supplier", new { supplierId = @supplier.SupplierId }, new { @class = "btn-info" })
+                            @Html.ActionLink("Delete", "Delete", "Supplier", new { supplierId = @supplier.SupplierId }, new { @class = "btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        @Html.ActionLink("Add Supplier", "Add", "Supplier", new { @class = "btn-primary" })
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

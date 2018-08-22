@@ -1,0 +1,77 @@
+﻿@model IEnumerable<AdoNet.Models.Customer>
+@{
+    ViewBag.Title = "CustomerByDOB";
+}
+
+<div class="jumbotron">
+    <h1>Search Customers</h1>
+</div>
+
+@using (Html.BeginForm("CustomerByDOB", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.Label("Customer DOB", new { @class = "control-label col-md-2", @for = "date", @id = "lbldob" })
+        <div class="col-md-3">
+            @Html.TextBox("date", "", new { @class = "form-control", @placeholder = "Pick a Date", @id = "date", @type = "date" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search Customer" class="form-control btn btn-primary" />
+        </div>
+    </div>
+}
+<br />
+<br />
+<br />
+
+<span class="label label-success">@ViewBag.Result</span>
+
+<div class="row">
+    <div class="col-md-10">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Customer ID
+                    </th>
+                    <th>
+                        Customer Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        DOB
+                    </th>
+                    <th>
+                        Salary
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var customer in Model)
+                    {
+                        <tr>
+                            <td>
+                                @customer.CustomerId
+                            </td>
+                            <td>
+                                @customer.CustomerName
+                            </td>
+                            <td>
+                                @customer.Address
+                            </td>
+                            <td>
+                                <strong><span class="text-success"> @customer.DOB.Date.ToString("dd-MM-yyyy")</span></strong>
+                            </td>
+                            <td>
+                                @customer.Salary
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

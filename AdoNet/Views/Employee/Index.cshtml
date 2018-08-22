@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AdoNet.Models.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>Employees - Service</h1>
+</div>
+
+@using (Html.BeginForm("Index", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.Label("Employee ID", new { @class = "control-label col-md-2", @for = "EmployeeId", @id = "lblEmployeeId" })
+        <div class="col-md-3">
+            @Html.TextBox("EmployeeId", "", new { @class = "form-control", @placeholder = "Enter Employee ID", @id = "EmployeeId" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search Employee" class="form-control btn btn-primary" />
+        </div>
+    </div>
+}
+<br />
+<br />
+<br />
+
+
+<div class="row">
+    <div class="col-md-10">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Employee ID
+                    </th>
+                    <th>
+                        Employee First Name
+                    </th>
+                    <th>
+                        Employee Last Name
+                    </th>
+                    <th>
+                        Department ID
+                    </th>                    
+                    <th>
+                        Operation
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var employee in Model)
+                    {
+                        <tr>
+                            <td>
+                                @employee.EmployeeID
+                            </td>
+                            <td>
+                                @employee.EmployeeFirstName
+                            </td>
+                            <td>
+                                @employee.EmployeeLastName
+                            </td>                            
+                            <td>
+                                @employee.DepartmentID
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Employee", new { EmployeeId = @employee.EmployeeID }, new { @class = "btn-info" })
+                                @Html.ActionLink("Delete", "Delete", "Employee", new { EmployeeId = @employee.EmployeeID }, new { @class = "btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        @Html.ActionLink("Add Employee", "Add", "Employee", new { @class = "btn-primary" })
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

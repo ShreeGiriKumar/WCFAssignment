@@ -1,0 +1,73 @@
+﻿@model AdoNet.Models.SupplierInfo
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="jumbotron">
+    <h4>Update Supplier</h4>
+</div>
+
+<span class="label label-success">@ViewBag.Result</span>
+
+
+<fieldset>
+    <legend>Supplier Info</legend>
+    @using (Html.BeginForm("Edit", "Supplier", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.SupplierId, new { @class = "control-label col-sm-2", @for = "SupplierId" })
+            <div class="col-sm-12">
+                @Html.TextBoxFor(m => m.SupplierId, new { @class = "form-control", @placeholder = "Enter Supplier Id" })
+                @Html.ValidationMessageFor(m => m.SupplierId, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.SupplierName, new { @class = "control-label col-sm-2", @for = "SupplierName" })
+            <div class="col-sm-12">
+                @Html.TextBoxFor(m => m.SupplierName, new { @class = "form-control", @placeholder = "Enter Supplier Name" })
+                @Html.ValidationMessageFor(m => m.SupplierName, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Address, new { @class = "control-label col-sm-2", @for = "Address" })
+            <div class="col-sm-12">
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Enter Address" })
+                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.City, new { @class = "control-label col-sm-2", @for = "City" })
+            <div class="col-sm-12">
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "Enter City" })
+                @Html.ValidationMessageFor(m => m.City, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ContactNo, new { @class = "control-label col-sm-2", @for = "ContactNo" })
+            <div class="col-sm-12">
+                @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-control", @placeholder = "Enter Contact No" })
+                @Html.ValidationMessageFor(m => m.ContactNo, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "control-label col-sm-2", @for = "Email" })
+            <div class="col-sm-12">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email", @type = "Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-12">
+                <input type="submit" value="Update Supplier" class="btn btn-primary" />
+                @Html.ActionLink("Go Back", "Index", "Supplier", new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    }
+</fieldset>

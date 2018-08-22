@@ -1,0 +1,56 @@
+﻿@model AdoNet.Models.Customer
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="jumbotron">
+    <h4>Add Customer Dataset</h4>
+</div>
+
+<span class="label label-success">@ViewBag.Result</span>
+
+
+<fieldset>
+    <legend>Customer Info</legend>
+    @using (Html.BeginForm("AddDS", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerName, new { @class = "control-label col-sm-2", @for = "CustomerName" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control", @placeholder = "Enter Customer Name" })
+                @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Address, new { @class = "control-label col-sm-2", @for = "Address" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Enter Address" })
+                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.DOB, new { @class = "control-label col-sm-2", @for = "DOB" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @placeholder = "Enter DOB", @type = "date" })
+                @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Salary, new { @class = "control-label col-sm-2", @for = "Salary" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", @placeholder = "Enter Salary", @type = "number" })
+                @Html.ValidationMessageFor(m => m.Salary, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Add Customer" class="btn btn-primary" />
+                @Html.ActionLink("Go Back", "IndexDS", "Customer", new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    }
+</fieldset>

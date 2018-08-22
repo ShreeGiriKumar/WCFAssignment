@@ -1,0 +1,91 @@
+﻿@model IEnumerable<AdoNet.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>Customers Using Dataset</h1>
+</div>
+
+@using (Html.BeginForm("IndexDS", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.Label("Customer ID", new { @class = "control-label col-md-2", @for = "CustomerID", @id = "lblCustomerId" })
+        <div class="col-md-3">
+            @Html.TextBox("CustomerID", "", new { @class = "form-control", @placeholder = "Enter Customer ID", @id = "CustomerId" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search Customer" class="form-control btn btn-primary" />
+        </div>
+    </div>
+}
+<br />
+<br />
+<br />
+
+<span class="label label-success">@ViewBag.Result</span>
+
+<div class="row">
+    <div class="col-md-10">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Customer ID
+                    </th>
+                    <th>
+                        Customer Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        DOB
+                    </th>
+                    <th>
+                        Salary
+                    </th>
+                    <th>
+                        Operation
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var customer in Model)
+                    {
+                        <tr>
+                            <td>
+                                @customer.CustomerId
+                            </td>
+                            <td>
+                                @customer.CustomerName
+                            </td>
+                            <td>
+                                @customer.Address
+                            </td>
+                            <td>
+                                @customer.DOB.Date.ToString("dd-MM-yyyy")
+                            </td>
+                            <td>
+                                @customer.Salary
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditDS", "Customer", new { CustomerId = @customer.CustomerId }, new { @class = "btn-info" })
+                                @Html.ActionLink("Delete", "DeleteDS", "Customer", new { CustomerId = @customer.CustomerId }, new { @class = "btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        @Html.ActionLink("Add Customer", "AddDS", "Customer", new { @class = "btn-primary" })
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
